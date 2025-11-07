@@ -1,0 +1,14 @@
+name: Keeping HuggingFace Space Alive
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"   # every 12 hours (00:00, 12:00 UTC)
+  workflow_dispatch:          # allows manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Hugging Face Space
+        run: |
+          curl -s https://buoipomn-emocare-backend-api.hf.space/api/resources > /dev/null || echo "Ping failed"
